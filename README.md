@@ -3,9 +3,9 @@
 ## Objetivo
 
 ## Grupo
-Aline Laís Tavares
-Géssica Sodré
-João Paulo Araújo
+* Aline Laís Tavares
+* éssica Sodré
+* João Paulo Araújo
 
 ## Tarefas
 A seguir, uma leve descrição do que é preciso ser feito para o projeto.
