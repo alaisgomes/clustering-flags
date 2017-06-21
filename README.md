@@ -4,7 +4,7 @@
 
 ## Grupo
 * Aline Laís Tavares
-* éssica Sodré
+* Géssica Sodré
 * João Paulo Araújo
 
 ## Tarefas
@@ -15,10 +15,10 @@ O conjunto de dados a ser estudado encontra-se em: https://archive.ics.uci.edu/m
 Basicamente, são dados com informações de todas as bandeiras nacionais de cada país existente. Atributos incluem cores das bandeiras, língua do país, continente, etc. São 30 atributos no total e 194 instâncias (bandeiras).
 
 ### Preparar conjunto de dados
-1. Procurar dados em formato inconsistente e: (a) removê-los ou (b) prever seus reais valores pela média de todos os outros. 
-No caso dos nosso conjunto de dados, não foram detectados dados inconsistentes
+* Procurar dados em formato inconsistente e: (a) removê-los ou (b) prever seus reais valores pela média de todos os outros. 
+No caso dos nosso conjunto de dados, não foram detectados dados inconsistentes.
 
-2. Verificar se conjunto de dados possuem atributos nominais e tratá-los.
+* Verificar se conjunto de dados possuem atributos nominais e tratá-los.
 Será necessário remover atributos nominais e atribuit valores aos mesmos. 
 No caso deste conjunto de dados, os atributos de cores predominantes e cores nos cantos esquerda-superior e direita-inferior precisarão ser convertidos em valores, da seguinte forma:
 
