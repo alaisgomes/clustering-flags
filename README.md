@@ -38,7 +38,7 @@ Dado um conjunto de pontos (os _n_ atributos para cada bandeira)  ![https://www.
 1. Formar a matriz de afinidade ![](https://latex.codecogs.com/gif.latex?A%20%5Cin%20%5Cmathbb%7BR%7D%5E%7Bn%20%5Ctimes%20n%7D) definido por:
 	* ![](https://latex.codecogs.com/gif.latex?A_%7Bij%7D%20%3D%20%7B%5Cexp%28-%7C%7Cs_i%20-%20s_j%7C%7C%5E%7B2%7D%7D/%7B2%7D%5Csigma%20%5E2%29)  ![](https://latex.codecogs.com/gif.latex?i%20%5Cneq%20j)
 	* ![](https://latex.codecogs.com/gif.latex?A_%7Bij%7D%20%3D%200%2C%20%5C%20se%20%5C%20i%20%3D%20j) 
-Lembrando que deve se escolher o melhor valor de ![](https://latex.codecogs.com/gif.latex?%5Csigma), além de definir a distância [2]  euclidiana para dois atributos como, por exemplo, ![](https://latex.codecogs.com/gif.latex?%7C%7Cs_1%20-%20s_2%7C%7C%5E%7B2%7D%20%3D%20%5Csqrt%7B%28s_%7B11%7D%20-%20s_%7B12%7D%29%5E2%20&plus;%20%28s_%7B12%7D-s_%7B22%7D%29%20&plus;%20%28s_%7B13%7D-s_%7B23%29%5E2%7D%7D) 
+Lembrando que deve se escolher o melhor valor de ![](https://latex.codecogs.com/gif.latex?%5Csigma), além de definir a distância [2]  euclidiana para dois atributos como, por exemplo, ![](https://latex.codecogs.com/gif.latex?%7C%7Cs_1%20-%20s_2%7C%7C%5E%7B2%7D%20%3D%20%5Csqrt%7B%28s_%7B11%7D%20-%20s_%7B12%7D%29%5E2%20&plus;%20%28s_%7B12%7D-s_%7B22%7D%29%5E2%20&plus;%20%28s_%7B13%7D-s_%7B23%7D%29%5E2%7D) 
 
 2. Definir a matriz diagonal onde o ![](https://latex.codecogs.com/gif.latex?%28i%2Ci%29elemento) é a soma dos valores de _A_ na _i-ésima_ linha. E com isso, construir a matriz ![](https://latex.codecogs.com/gif.latex?L%20%3D%20D%5E%7B-1/2%7D%20A%5Ccdot%20D%5E%7B-1/2%7D)
 
