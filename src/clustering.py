@@ -11,7 +11,7 @@ def main():
         flags_reader = csv.reader(csvfile, delimiter=',')
 
         for flag in flags_reader:
-            print (flag[0])
+            print ("Nome do pais: {}".format(flag[0]))
             
 
 if __name__ == '__main__':
