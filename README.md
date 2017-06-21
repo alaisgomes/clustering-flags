@@ -33,22 +33,22 @@ No caso deste conjunto de dados, os atributos de cores predominantes e cores nos
 ...
 
 
-### Algorítmo de agrupamento espectral a ser utilizado
-Dado um conjunto de pontos (os _n_ atributos para cada bandeira) \\((S = {s_1,\cdots, s_n})\\) in \\(\mathbb{R}^i\\), é preciso realizar os seguintes passos: [1]
-1. Formar a matriz de afinidade \\(A \in \mathbb{R}^{n \times n}\\) definido por:
-	* \\(A_{ij} = {\exp(-||s_i - s_j||^{2}}/{2}\sigma ^2)\\) se \\(i \neq j \\) 
-	* \\(A_{ij} = 0\\) se \\(i = j \\) 
-Lembrando que deve se escolher o melhor valor de \\(\sigma\\) e a distância euclidiana para dois atributos é, por exemplo, \\( \exp(-||s_1 - s_2||^{2}) = \sqrt{(s_{ii} - s_{11})^2 + (s_{12}-s_{22}) + (s_{13}-s_{23)^2}} \\) [2]
+### Algoritmo de agrupamento espectral a ser utilizado
+Dado um conjunto de pontos (os _n_ atributos para cada bandeira)  ![https://www.codecogs.com/eqnedit.php?latex=S&space;=&space;{s_1,\cdots,&space;s_n}&space;\in&space;\mathbb{R}^i](https://latex.codecogs.com/gif.latex?S&space;=&space;{s_1,\cdots,&space;s_n}&space;\in&space;\mathbb{R}^i), é preciso realizar os seguintes passos: [1]
+1. Formar a matriz de afinidade ![](https://latex.codecogs.com/gif.latex?A%20%5Cin%20%5Cmathbb%7BR%7D%5E%7Bn%20%5Ctimes%20n%7D) definido por:
+	* ![](https://latex.codecogs.com/gif.latex?A_%7Bij%7D%20%3D%20%7B%5Cexp%28-%7C%7Cs_i%20-%20s_j%7C%7C%5E%7B2%7D%7D/%7B2%7D%5Csigma%20%5E2%29)  ![](https://latex.codecogs.com/gif.latex?i%20%5Cneq%20j)
+	* ![](https://latex.codecogs.com/gif.latex?A_%7Bij%7D%20%3D%200%2C%20%5C%20se%20%5C%20i%20%3D%20j) 
+Lembrando que deve se escolher o melhor valor de ![](https://latex.codecogs.com/gif.latex?%5Csigma), além de definir a distância [2]  euclidiana para dois atributos como, por exemplo, ![](https://latex.codecogs.com/gif.latex?%5Cexp%28-%7C%7Cs_1%20-%20s_2%7C%7C%5E%7B2%7D%29%20%3D%20%5Csqrt%7B%28s_%7Bii%7D%20-%20s_%7B11%7D%29%5E2%20&plus;%20%28s_%7B12%7D-s_%7B22%7D%29%20&plus;%20%28s_%7B13%7D-s_%7B23%29%5E2%7D%7D) 
 
-2. Definir a matriz diagonal onde o \\((i,i)\\)_elemento é a soma dos valores de \\(A\\) na \\(i\\)-ésima linha. E com isso, construir a matriz \\(L = D^{-1/2} A\cdot D^{-1/2} \\)
+2. Definir a matriz diagonal onde o ![](https://latex.codecogs.com/gif.latex?%28i%2Ci%29elemento) é a soma dos valores de _A_ na _i-ésima_ linha. E com isso, construir a matriz ![](https://latex.codecogs.com/gif.latex?L%20%3D%20D%5E%7B-1/2%7D%20A%5Ccdot%20D%5E%7B-1/2%7D)
 
-3. Achar \\(x_1, x_2, \cdots x_k\\), maiores _k_ autovetores de _L_ (escolhidos do be ortogonal um ao outro no caso de autovalores repetidos) e formar a matrix \\(X = [x_1 x_2 \cdots x_k] \in \mathbb{R}^{n \times k}\\) através do empilhamento dos autovetores em colunas.
+3. Achar ![](https://latex.codecogs.com/gif.latex?x_1%2C%20x_2%2C%20%5Ccdots%20x_k), maiores _k_ autovetores de _L_ (escolhidos para serem ortogonal um ao outro no caso de autovalores repetidos) e formar a matrix ![](https://latex.codecogs.com/gif.latex?X%20%3D%20%5Bx_1%20x_2%20%5Ccdots%20x_k%5D%20%5Cin%20%5Cmathbb%7BR%7D%5E%7Bn%20%5Ctimes%20k%7D) através do empilhamento dos autovetores em colunas.
 
-4. Formar a matriz _Y_ a partir de _X_ através da renormalização  de cada linha de X para ter uma unidade de largura( ex: \\( I_{ij} = \frac{X_{ij}}{(\sum_{j} X_{ij}^2)^{1/2}} \\)).
+4. Formar a matriz _Y_ a partir de _X_ através da renormalização  de cada linha de X para ter uma unidade de largura( ex: ![](https://latex.codecogs.com/gif.latex?I_%7Bij%7D%20%3D%20%5Cfrac%7BX_%7Bij%7D%7D%7B%28%5Csum_%7Bj%7D%20X_%7Bij%7D%5E2%29%5E%7B1/2%7D%7D) ).
 
-5. Tratar cada linha de Y como um ponto em \\(\mathbb{R}^k\\), agrupando-os em _k_ grupos através do _K-means_ ou outro algorítmo (na tentativa de minimizar distorções).
+5. Tratar cada linha de Y como um ponto em ![](https://latex.codecogs.com/gif.latex?%5Cmathbb%7BR%7D%5Ek), agrupando-os em _k_ grupos através do _K-means_ ou outro algorítmo (na tentativa de minimizar distorções).
 
-6. Finalmente, atribuir aos pontos originais \\(s_i\\) ao grupo _j_ se e somente se a linha _i_ da matriz _Y_ foi atribuida ao grupo _j_.
+6. Finalmente, atribuir aos pontos originais ![](https://latex.codecogs.com/gif.latex?s_i) ao grupo _j_ se e somente se a linha _i_ da matriz _Y_ foi atribuida ao grupo _j_.
 
 
 ### Resultados Experimentais
