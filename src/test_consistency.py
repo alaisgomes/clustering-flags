@@ -4,7 +4,7 @@
 
 import csv
 
-data_file = "data/flag.csv"
+data_file = "data/formated.csv"
 
 # class InconsistencyException(Exception):
 #     def __init__(self, value, country):
@@ -44,6 +44,7 @@ def main():
                 test_bool(flag[i], "color_present")
 
             # 17 = mainhue
+            test_int_in_range(flag[17], range(0,8), "main_hue")
 
             test_is_int(flag[18], "total_circles")
             test_is_int(flag[19], "total_crosses")

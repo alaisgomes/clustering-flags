@@ -19,18 +19,19 @@ Basicamente, são dados com informações de todas as bandeiras nacionais de cad
 No caso dos nosso conjunto de dados, não foram detectados dados inconsistentes.
 
 * Verificar se conjunto de dados possuem atributos nominais e tratá-los.
-Será necessário remover atributos nominais e atribuit valores aos mesmos. 
-No caso deste conjunto de dados, os atributos de cores predominantes e cores nos cantos esquerda-superior e direita-inferior precisarão ser convertidos em valores, da seguinte forma:
+No caso deste conjunto de dados, os atributos de cores predominantes e cores nos cantos esquerda-superior e direita-inferior foram convertidos em valores, representados por um identificador, como descrito na tabela a seguir:
 
 | Cor  |  id |
 | ---  | --- |
-|blue  | TBA |
-|green | TBA |
-| red  | TBA |
-| gold | TBA |
-| ...  | TBA |
+| green  | 0 |
+|black | 1 |
+| red  | 2 |
+| white | 3 |
+| blue  | 4 |
+| gold  | 5 |
+| orange  | 6 |
+| brown  | 7 |
 
-...
 
 
 ### Algoritmo de agrupamento espectral a ser utilizado
@@ -45,7 +46,11 @@ Lembrando que deve se escolher o melhor valor de ![](https://latex.codecogs.com/
 
 3. Achar ![](https://latex.codecogs.com/gif.latex?x_1%2C%20x_2%2C%20%5Ccdots%20x_k), maiores _k_ autovetores de _L_ (escolhidos para serem ortogonal um ao outro no caso de autovalores repetidos) e formar a matrix ![](https://latex.codecogs.com/gif.latex?X%20%3D%20%5Bx_1%20x_2%20%5Ccdots%20x_k%5D%20%5Cin%20%5Cmathbb%7BR%7D%5E%7Bn%20%5Ctimes%20k%7D) através do empilhamento dos autovetores em colunas.
 
+Achar autovetores e autovalores: https://stackoverflow.com/questions/6684238/whats-the-fastest-way-to-find-eigenvalues-vectors-in-python
+
 4. Formar a matriz _Y_ a partir de _X_ através da renormalização  de cada linha de X para ter uma unidade de largura( ex: ![](https://latex.codecogs.com/gif.latex?I_%7Bij%7D%20%3D%20%5Cfrac%7BX_%7Bij%7D%7D%7B%28%5Csum_%7Bj%7D%20X_%7Bij%7D%5E2%29%5E%7B1/2%7D%7D) ).
+
+Achar raiz da matriz: https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.linalg.sqrtm.html
 
 5. Tratar cada linha de Y como um ponto em ![](https://latex.codecogs.com/gif.latex?%5Cmathbb%7BR%7D%5Ek), agrupando-os em _k_ grupos através do _K-means_ ou outro algorítmo (na tentativa de minimizar distorções).
 
