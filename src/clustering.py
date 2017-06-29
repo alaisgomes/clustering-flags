@@ -54,8 +54,7 @@ def main():
     process_args()
 
     # passo 1
-    S = csv_to_matrix(formatted_data_file)
-    A = affinity_matrix(S)
+    A = affinity_matrix(formatted_data_file)
 
     # passo 2
     L = laplacian_matrix(A)

@@ -1,9 +1,18 @@
 import math
 import csv
+import sys
+from scipy import linalg as LA
 
-SIGMA = 0.5
-# read previous and current line in reader
-# calculate the euclidean_distance
+SIGMA = 0.3
+N_INSTANCES = 194
+
+def initialize_matrix(size=N_INSTANCES):
+    matrix = [
+        [0.0 for i in range(N_INSTANCES)] 
+        for j in range(N_INSTANCES)
+    ]
+
+    return matrix
 
 def euclidean_ditance(s1, s2):
     value = 0.0
@@ -14,55 +23,65 @@ def euclidean_ditance(s1, s2):
     return math.sqrt(value)
 
    
-def csv_to_matrix(pfile):
-    n = sum(1 for line in open(pfile))
-
-    matrix = [
-                [0.0 for i in range(n)] 
-                for j in range(n)
-            ]
-
+def affinity_matrix(pfile):
 
     with open(pfile, 'rb') as csvfile:
         flags_reader = csv.reader(csvfile, delimiter=',')
+        flags = list(flags_reader)
 
+        matrix = initialize_matrix()
         i = 0
         j = 0
 
-        sig_pow = pow(SIGMA, 2)
+        sig_pow = 2*pow(SIGMA, 2)
 
-        for line in flags_reader:
-            s1 = line
+        for s1 in flags:
             j = 0
-            for row in flags_reader:
-                s2 = row
-                ed = euclidean_ditance(s1, s2)    
-                # print (sig_pow)
-
-                matrix[i][j] = math.pow(math.e, -(ed/sig_pow))
+            for s2 in flags:
+                if (i != j):
+                    ed = euclidean_ditance(s1, s2)    
+                    matrix[i][j] = math.exp(-(ed/sig_pow))
 
                 j += 1
-
             i += 1
 
 
     csvfile.close()
 
-    for i in range (0, 30):
-        print (matrix[i])
+    return matrix
 
-def affinity_matrix(S):
-    pass
+def sum_line_values(line):
+    total = 0.0
+    for item in line:
+        total += item
+
+    return total
 
 def laplacian_matrix(A):
-    pass
+    D = initialize_matrix()
+    L = initialize_matrix()
+
+    for i in range(N_INSTANCES):
+        D[i][i] = sum_line_values(A[i])
+
+    for i in range(N_INSTANCES):
+        for j in range(N_INSTANCES):
+            L[i][j] = D[i][j] - A[i][j]
+
+    return L
+
+    
 
 def eigen_vectors(L):
-    pass
+    e_vals, e_vecs = LA.eig(A)
+    print (e_vals)
 
 
 def main():
-    csv_to_matrix("data/formatted.csv")
+    if ("--test" in sys.argv):
+        A = affinity_matrix("data/formatted.csv")
+        laplacian_matrix(A)
+
 
 if __name__ == '__main__':
     main()

@@ -7,6 +7,9 @@
 * Géssica Sodré
 * João Paulo Araújo
 
+### To-do list
+Completo até o passo 2 do algoritmo. Falta fazer a partir do passo 3 (eigen vectors)
+
 ## Tarefas
 A seguir, uma leve descrição do que é preciso ser feito para o projeto.
 
@@ -36,6 +39,7 @@ No caso deste conjunto de dados, os atributos de cores predominantes e cores nos
 
 ### Algoritmo de agrupamento espectral a ser utilizado
 Dado um conjunto de pontos (os _n_ atributos para cada bandeira)  ![https://www.codecogs.com/eqnedit.php?latex=S&space;=&space;{s_1,\cdots,&space;s_n}&space;\in&space;\mathbb{R}^i](https://latex.codecogs.com/gif.latex?S&space;=&space;{s_1,\cdots,&space;s_n}&space;\in&space;\mathbb{R}^i), é preciso realizar os seguintes passos: [1]
+
 1. Formar a matriz de afinidade ![](https://latex.codecogs.com/gif.latex?A%20%5Cin%20%5Cmathbb%7BR%7D%5E%7Bn%20%5Ctimes%20n%7D) definido por:
 	* ![](https://latex.codecogs.com/gif.latex?A_%7Bij%7D%20%3D%20%7B%5Cexp%28-%7C%7Cs_i%20-%20s_j%7C%7C%5E%7B2%7D%7D/%7B2%7D%5Csigma%20%5E2%29)  ![](https://latex.codecogs.com/gif.latex?i%20%5Cneq%20j)
 	* ![](https://latex.codecogs.com/gif.latex?A_%7Bij%7D%20%3D%200%2C%20%5C%20se%20%5C%20i%20%3D%20j) 
@@ -47,6 +51,11 @@ Lembrando que deve se escolher o melhor valor de ![](https://latex.codecogs.com/
 3. Achar ![](https://latex.codecogs.com/gif.latex?x_1%2C%20x_2%2C%20%5Ccdots%20x_k), maiores _k_ autovetores de _L_ (escolhidos para serem ortogonal um ao outro no caso de autovalores repetidos) e formar a matrix ![](https://latex.codecogs.com/gif.latex?X%20%3D%20%5Bx_1%20x_2%20%5Ccdots%20x_k%5D%20%5Cin%20%5Cmathbb%7BR%7D%5E%7Bn%20%5Ctimes%20k%7D) através do empilhamento dos autovetores em colunas.
 
 Achar autovetores e autovalores: https://stackoverflow.com/questions/6684238/whats-the-fastest-way-to-find-eigenvalues-vectors-in-python
+
+Para usar a biblioteca SciPy, fazer o download da mesma:
+```sh
+pip install SciPy
+```
 
 4. Formar a matriz _Y_ a partir de _X_ através da renormalização  de cada linha de X para ter uma unidade de largura( ex: ![](https://latex.codecogs.com/gif.latex?I_%7Bij%7D%20%3D%20%5Cfrac%7BX_%7Bij%7D%7D%7B%28%5Csum_%7Bj%7D%20X_%7Bij%7D%5E2%29%5E%7B1/2%7D%7D) ).
 
