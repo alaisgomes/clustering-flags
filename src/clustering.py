@@ -5,17 +5,19 @@
 import csv
 import sys
 import os
-
+from matrix import csv_to_matrix, affinity_matrix, laplacian_matrix
+from matrix import eigen_vectors
 
 data_file = "data/flag.csv"
 formatted_data_file = "data/formatted.csv"
 
+
 def clean(flags):
-    print ("Cleaning data set. Setting nominal colors with following ids:")
+    print ("\nCleaning data set. Setting nominal colors with following ids:")
 
     colors = []
 
-    with open('data/formatted.csv', 'wb') as csvfile:
+    with open(formatted_data_file, 'wb') as csvfile:
         spamwriter = csv.writer(csvfile, delimiter =',')
         
         i = 0
@@ -36,20 +38,42 @@ def clean(flags):
     csvfile.close()
 
 
-def process_args(flags_reader):
-    for arg in sys.argv:
-        if (arg == '--clean'):
-            clean(flags_reader)
+def process_args():
+    with open(data_file, 'rb') as csvfile:
+        flags_reader = csv.reader(csvfile, delimiter=',')
+
+        for arg in sys.argv:
+            if (arg == '--clean'):
+                clean(flags_reader)
+
+    csvfile.close()
 
 
 def main():   
-    with open(data_file, 'rb') as csvfile:
-        flags_reader = csv.reader(csvfile, delimiter=',')
-        
-        process_args(flags_reader)
-        
 
-    csvfile.close()
+    process_args()
+
+    # passo 1
+    S = csv_to_matrix(formatted_data_file)
+    A = affinity_matrix(S)
+
+    # passo 2
+    L = laplacian_matrix(A)
+
+    # passo 3
+    X = eigen_vectors(L)
+
+    # passo 4
+    Y = renormalize_matrix(X)
+
+    # passo 5
+    # apply_k_means(Y)
+
+    # passo 6
+    # atribuir pontos originais (?)
+
+
+    
             
             
 
