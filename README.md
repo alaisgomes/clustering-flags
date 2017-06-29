@@ -52,10 +52,12 @@ Lembrando que deve se escolher o melhor valor de ![](https://latex.codecogs.com/
 
 Achar autovetores e autovalores: https://stackoverflow.com/questions/6684238/whats-the-fastest-way-to-find-eigenvalues-vectors-in-python
 
-Para usar a biblioteca SciPy, fazer o download da mesma:
+Para usar a biblioteca SciPy, fazer o download da mesma pelo site:
+https://www.scipy.org/install.html
 ```sh
-pip install SciPy
+pip install --user numpy scipy matplotlib ipython jupyter pandas sympy nose
 ```
+
 
 4. Formar a matriz _Y_ a partir de _X_ através da renormalização  de cada linha de X para ter uma unidade de largura( ex: ![](https://latex.codecogs.com/gif.latex?I_%7Bij%7D%20%3D%20%5Cfrac%7BX_%7Bij%7D%7D%7B%28%5Csum_%7Bj%7D%20X_%7Bij%7D%5E2%29%5E%7B1/2%7D%7D) ).
 

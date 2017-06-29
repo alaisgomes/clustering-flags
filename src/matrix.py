@@ -1,7 +1,7 @@
 import math
 import csv
 import sys
-from scipy import linalg as LA
+# from scipy import linalg as LA
 
 SIGMA = 0.3
 N_INSTANCES = 194
@@ -73,8 +73,9 @@ def laplacian_matrix(A):
     
 
 def eigen_vectors(L):
-    e_vals, e_vecs = LA.eig(A)
-    print (e_vals)
+#    e_vals, e_vecs = LA.eig(A)
+#    print (e_vals)
+    pass
 
 
 def main():
