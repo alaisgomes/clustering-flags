@@ -8,7 +8,7 @@
 * João Paulo Araújo
 
 ### To-do list
-Completo até o passo 2 do algoritmo. Falta fazer a partir do passo 3 (eigen vectors)
+Completo até o passo 4 do algoritmo. Falta fazer a partir do passo 5 (K-means)
 
 ## Tarefas
 A seguir, uma leve descrição do que é preciso ser feito para o projeto.
@@ -27,7 +27,7 @@ No caso deste conjunto de dados, os atributos de cores predominantes e cores nos
 | Cor  |  id |
 | ---  | --- |
 | green  | 0 |
-|black | 1 |
+| black | 1 |
 | red  | 2 |
 | white | 3 |
 | blue  | 4 |
@@ -56,7 +56,10 @@ Para usar a biblioteca SciPy, fazer o download da mesma pelo site:
 https://www.scipy.org/install.html
 ```sh
 pip install --user numpy scipy matplotlib ipython jupyter pandas sympy nose
+
 ```
+
+Instalar matplotlib.pyplot para graficos.
 
 
 4. Formar a matriz _Y_ a partir de _X_ através da renormalização  de cada linha de X para ter uma unidade de largura( ex: ![](https://latex.codecogs.com/gif.latex?I_%7Bij%7D%20%3D%20%5Cfrac%7BX_%7Bij%7D%7D%7B%28%5Csum_%7Bj%7D%20X_%7Bij%7D%5E2%29%5E%7B1/2%7D%7D) ).

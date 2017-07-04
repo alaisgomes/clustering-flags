@@ -5,8 +5,9 @@
 import csv
 import sys
 import os
-from matrix import csv_to_matrix, affinity_matrix, laplacian_matrix
-from matrix import eigen_vectors
+import matplotlib.pyplot as plt
+from matrix import affinity_matrix, laplacian_matrix
+from matrix import eigen_vectors, renormalize_matrix
 
 data_file = "data/flag.csv"
 formatted_data_file = "data/formatted.csv"
@@ -39,19 +40,24 @@ def clean(flags):
 
 
 def process_args():
+    not_silent = False
     with open(data_file, 'rb') as csvfile:
         flags_reader = csv.reader(csvfile, delimiter=',')
 
         for arg in sys.argv:
             if (arg == '--clean'):
                 clean(flags_reader)
+            if (arg == '--test'):
+                not_silent =  True
 
     csvfile.close()
+
+    return not_silent
 
 
 def main():   
 
-    process_args()
+    not_silent = process_args()
 
     # passo 1
     A = affinity_matrix(formatted_data_file)
@@ -60,7 +66,7 @@ def main():
     L = laplacian_matrix(A)
 
     # passo 3
-    X = eigen_vectors(L)
+    e_values, X = eigen_vectors(L)
 
     # passo 4
     Y = renormalize_matrix(X)
@@ -71,7 +77,11 @@ def main():
     # passo 6
     # atribuir pontos originais (?)
 
-
+    if (not_silent):
+        result = Y
+        print (result)
+        plt.imshow(A, cmap='hot')
+        plt.show()
     
             
             
