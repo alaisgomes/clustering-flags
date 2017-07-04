@@ -1,5 +1,16 @@
 # Projeto - Agrupamento Espectral
 
+## Requisitos
+- Python >= 3.4.*
+
+Para rodar:
+- python3 clustering.py --test
+
+_--test_ é um argumento opcional, para caso deseja ver alguma matriz de resultado
+_--clean_ é um argumento opção que realiza a limpeza dos dados, tratando os atributos nominais.
+
+Lembrar de instalar as bibliotecas necessárias (descritas no passo 3) como sudo (se não utilizar um ambiente virtual).
+
 ## Objetivo
 
 ## Grupo
@@ -55,8 +66,7 @@ Achar autovetores e autovalores: https://stackoverflow.com/questions/6684238/wha
 Para usar a biblioteca SciPy, NumPy e plot gráfico, instalar as seguintes bibliotecas:
 
 ```sh
-pip install --user numpy scipy matplotlib ipython jupyter pandas sympy nose
-pip install matplotlib
+pip3 install --user numpy scipy matplotlib ipython jupyter pandas sympy nose
 sudo apt-get install python3-tk
 ```
 

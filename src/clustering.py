@@ -78,10 +78,11 @@ def main():
     # atribuir pontos originais (?)
 
     if (not_silent):
-        result = Y
+        result = Y # substitua pela matriz que deseja imprimir na tela
         print (result)
-        plt.imshow(A, cmap='hot')
-        plt.show()
+
+    plt.imshow(A, cmap='hot', interpolation='nearest', aspect='auto')
+    plt.show()
     
             
             
