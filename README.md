@@ -46,29 +46,29 @@ Dado um conjunto de pontos (os _n_ atributos para cada bandeira)  ![https://www.
 Lembrando que deve se escolher o melhor valor de ![](https://latex.codecogs.com/gif.latex?%5Csigma), além de definir a distância [2]  euclidiana para dois atributos. No caso, temos:
  ![](https://latex.codecogs.com/gif.latex?%7C%7Cs_i%20-%20s_j%7C%7C%5E2%20%3D%20%5Csqrt%7B%5Csum_%7Bi%3D0%7D%5E%20d%20%28x_%7Bid%7D-x_%7Bjd%7D%29%5E2%7D) 
 
-2. Definir a matriz diagonal onde o ![](https://latex.codecogs.com/gif.latex?%28i%2Ci%29elemento) é a soma dos valores de _A_ na _i-ésima_ linha. E com isso, construir a matriz ![](https://latex.codecogs.com/gif.latex?L%20%3D%20D%5E%7B-1/2%7D%20A%5Ccdot%20D%5E%7B-1/2%7D)
+2. Definir a matriz diagonal onde o ![](https://latex.codecogs.com/gif.latex?%28i%2Ci%29elemento) é a soma dos valores de _A_ na _i-ésima_ linha. E com isso, construir a matriz ![](https://latex.codecogs.com/gif.latex?L%20%3D%20D%20-%20A)
 
 3. Achar ![](https://latex.codecogs.com/gif.latex?x_1%2C%20x_2%2C%20%5Ccdots%20x_k), maiores _k_ autovetores de _L_ (escolhidos para serem ortogonal um ao outro no caso de autovalores repetidos) e formar a matrix ![](https://latex.codecogs.com/gif.latex?X%20%3D%20%5Bx_1%20x_2%20%5Ccdots%20x_k%5D%20%5Cin%20%5Cmathbb%7BR%7D%5E%7Bn%20%5Ctimes%20k%7D) através do empilhamento dos autovetores em colunas.
 
 Achar autovetores e autovalores: https://stackoverflow.com/questions/6684238/whats-the-fastest-way-to-find-eigenvalues-vectors-in-python
 
-Para usar a biblioteca SciPy, fazer o download da mesma pelo site:
-https://www.scipy.org/install.html
+Para usar a biblioteca SciPy, NumPy e plot gráfico, instalar as seguintes bibliotecas:
+
 ```sh
 pip install --user numpy scipy matplotlib ipython jupyter pandas sympy nose
-
+pip install matplotlib
+sudo apt-get install python3-tk
 ```
 
-Instalar matplotlib.pyplot para graficos.
+4. Formar a matriz _Y_ a partir de _X_ através da renormalização  de cada linha de X para ter uma unidade de largura( ex: ![](https://latex.codecogs.com/gif.latex?Y_%7Bij%7D%20%3D%20%5Cfrac%7BX_%7Bij%7D%7D%7B%5Csum_j%7B%28X_%7Bij%7D%5E2%7D%29%5E%7B1/2%7D%7D) ).
 
 
-4. Formar a matriz _Y_ a partir de _X_ através da renormalização  de cada linha de X para ter uma unidade de largura( ex: ![](https://latex.codecogs.com/gif.latex?I_%7Bij%7D%20%3D%20%5Cfrac%7BX_%7Bij%7D%7D%7B%28%5Csum_%7Bj%7D%20X_%7Bij%7D%5E2%29%5E%7B1/2%7D%7D) ).
+5. Tratar cada linha de Y como um ponto em ![](https://latex.codecogs.com/gif.latex?%5Cmathbb%7BR%7D%5Ek), agrupando-os em _k_ grupos através do _K-means_ ou outro algorítmo (na tentativa de minimizar distorções). Ou seja, escolher a quantidade de clusters _k_ e aplicar algum algorítmo de K-means, da forma que se consiga obter dados satisfatórios. Comece por algum tamanho k=2 e pode ir aumentando até obter osmelhores grupos possíveis.
 
-Achar raiz da matriz: https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.linalg.sqrtm.html
+Possível algorítmo de K-means que pode ser utilizado:
+http://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html
 
-5. Tratar cada linha de Y como um ponto em ![](https://latex.codecogs.com/gif.latex?%5Cmathbb%7BR%7D%5Ek), agrupando-os em _k_ grupos através do _K-means_ ou outro algorítmo (na tentativa de minimizar distorções).
-
-6. Finalmente, atribuir aos pontos originais ![](https://latex.codecogs.com/gif.latex?s_i) ao grupo _j_ se e somente se a linha _i_ da matriz _Y_ foi atribuida ao grupo _j_.
+6. Finalmente, atribuir aos pontos originais ![](https://latex.codecogs.com/gif.latex?s_i) ao grupo _j_ se e somente se a linha _i_ da matriz _Y_ foi atribuida ao grupo _j_. Em outras palavras, após realizar o K-means, associar um nome/significado a cada ponto de forma que estes representem os nomes das flags inicialmente sendo utilizadas. Por exemplo, se a linha Y[0] da matriz Y estiver em um cluster qualquer representada por um ponto, esse ponto especifico é o ponto _Afghanistan_.
 
 
 ### Resultados Experimentais
@@ -76,4 +76,5 @@ Achar raiz da matriz: https://docs.scipy.org/doc/scipy-0.14.0/reference/generate
 
 ## Referências
 [1] Ng, A., Jordan, M., Weiss, Y.: [On Spectral Clustering: Analysis and an algorithm.](https://www.cs.cmu.edu/~efros/courses/LBMV07/Papers/ng-nips-01.pdf) In: Dietterich, T., Becker, S., Ghahramani, Z. (eds.) Advances in Neural Information Processing Systems 14, pp. 849–856. MIT Press, Cambridge (2002).
+
 [2] Euclidean distance, 24 May 2017. In _Wikipedia: The Free Encyclopedia_. Wikimedia Foundation Inc. Encyclopedia on-line. Available from https://en.wikipedia.org/wiki/Euclidean_distance#n_dimensions. Retrieved at 21 June 2014.
