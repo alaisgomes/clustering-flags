@@ -8,12 +8,13 @@ import matplotlib.pyplot as plt
 from scipy.cluster.vq import * #kmeans,vq, whiten
 import pylab
 
+# Constantes para modificar e obter resultados
+SIGMA = 13.0
+K_CONST = 10   
+ATTRIBUTES_RANGE = range(3,5)
+
 final_file = "data/formatted.csv"
-
-SIGMA = 26
 N_INSTANCES = sum(1 for line in open(final_file))
-K_CONST = 10
-
 
 
 def initialize_matrix(size=N_INSTANCES):
@@ -27,7 +28,7 @@ def initialize_matrix(size=N_INSTANCES):
 def euclidean_ditance(s1, s2):
     value = 0.0
 
-    for i in range(1,30):
+    for i in ATTRIBUTES_RANGE:
         value += math.pow((int(s1[i]) - int(s2[i])), 2)
 
     return math.sqrt(value)
@@ -101,22 +102,23 @@ def renormalize_matrix(X):
     #return KMeans(n_clusters=2, random_state=0).fit(Y)
 
 def apply_k_means(Y, labels):
-    data = whiten(Y)
+    data = Y
     initial = [kmeans(data,i) for i in range(1,K_CONST)]
     #plt.plot([var for (cent,var) in initial])
     #plt.show()
 
     cent, var = initial[1]
     assignment,cdist = vq(data,cent)
-    print(cdist)
+    print(assignment)
 
     X = data[:,0]
     Y = data[:,1]
 
     plt.scatter(X, Y, c=assignment)
 
-    for i, txt in enumerate(labels):
-        plt.annotate(txt, (X[i],Y[i]))
+#    for i, txt in enumerate(labels):
+#        plt.annotate(txt, (X[i],Y[i]))
+
     plt.show()
 
     # plt.plot(data[:][0], data[:][1], linestyle="-")
