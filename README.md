@@ -66,7 +66,7 @@ Achar autovetores e autovalores: https://stackoverflow.com/questions/6684238/wha
 Para usar a biblioteca SciPy, NumPy e plot gráfico, instalar as seguintes bibliotecas:
 
 ```sh
-pip3 install --user numpy scipy matplotlib ipython jupyter pandas sympy nose
+pip3 install --user numpy scipy matplotlib ipython jupyter pandas sympy nose sklearn
 sudo apt-get install python3-tk
 ```
 
