@@ -6,6 +6,8 @@ import csv
 import sys
 import os
 import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+import numpy as np
 from matrix import affinity_matrix, laplacian_matrix
 from matrix import eigen_vectors, renormalize_matrix
 from matrix import apply_k_means
