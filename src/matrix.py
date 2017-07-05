@@ -10,9 +10,9 @@ import pylab
 
 final_file = "data/formatted.csv"
 
-SIGMA = 20.5
+SIGMA = 26
 N_INSTANCES = sum(1 for line in open(final_file))
-K_CONST = 6
+K_CONST = 10
 
 
 
@@ -47,15 +47,14 @@ def affinity_matrix(pfile):
 
         sig_pow = 2*pow(SIGMA, 2)
 
-        for s1 in flags:
-            j = 0
-            for s2 in flags:
+        for i in range(N_INSTANCES):
+            s1 = flags[i]
+            for j in range(N_INSTANCES):
+                s2 = flags[j]
                 if (i != j):
                     ed = euclidean_ditance(s1, s2)    
                     matrix[i,j] = math.exp(-(ed/sig_pow))
 
-                j += 1
-            i += 1
 
     csvfile.close()
 
@@ -107,10 +106,17 @@ def apply_k_means(Y, labels):
     #plt.plot([var for (cent,var) in initial])
     #plt.show()
 
-    cent, var = initial[2]
+    cent, var = initial[1]
     assignment,cdist = vq(data,cent)
     print(cdist)
-    plt.scatter(data[:,0], data[:,1], c=assignment)
+
+    X = data[:,0]
+    Y = data[:,1]
+
+    plt.scatter(X, Y, c=assignment)
+
+    for i, txt in enumerate(labels):
+        plt.annotate(txt, (X[i],Y[i]))
     plt.show()
 
     # plt.plot(data[:][0], data[:][1], linestyle="-")
