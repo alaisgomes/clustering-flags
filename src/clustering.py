@@ -10,8 +10,7 @@ from sklearn.cluster import KMeans
 import numpy as np
 from matrix import affinity_matrix, laplacian_matrix
 from matrix import eigen_vectors, renormalize_matrix
-from matrix import apply_k_means, create_model
-
+from matrix import apply_k_means
 data_file = "data/flag.csv"
 formatted_data_file = "data/formatted.csv"
 
@@ -74,17 +73,14 @@ def main():
     # passo 4
     Y = renormalize_matrix(X)
 
-    # passo 5
-    Z, dist = apply_k_means(Y)
-
-    # passo 6
-    k_const = create_model(Y, Z, labels, dist)
+    # passo 5 e 6
+    k_const = apply_k_means(Y, labels)
 
 
     result = Y # substitua pela matriz que deseja imprimir na tela
 
     if (not_silent):
-        print("Clusters used: {}.\nData:".format(K_CONST))
+        print("Clusters used: {}.\nData:".format(k_const))
         print (result)
                  
 

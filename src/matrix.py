@@ -10,9 +10,9 @@ import pylab
 
 final_file = "data/formatted.csv"
 
-SIGMA = 25.0
-N_INSTANCES =  sum(1 for line in open(final_file))
-K_CONST = 2
+SIGMA = 20.5
+N_INSTANCES = sum(1 for line in open(final_file))
+K_CONST = 6
 
 
 
@@ -96,22 +96,24 @@ def renormalize_matrix(X):
 
     return Y
 
-def apply_k_means(Y):
-    W = whiten(Y)
-    return kmeans(Y,K_CONST)
+# def apply_k_means(Y):
+#     W = whiten(Y)
+#     return kmeans(Y,K_CONST)
     #return KMeans(n_clusters=2, random_state=0).fit(Y)
 
-def create_model(Y, centroids, labels, dist):
-    data = Y #whiten(Y)
-    idx,_ = vq(data,centroids)
-    print(idx)
-    print (len(idx))
+def apply_k_means(Y, labels):
+    data = whiten(Y)
+    initial = [kmeans(data,i) for i in range(1,K_CONST)]
+    #plt.plot([var for (cent,var) in initial])
+    #plt.show()
 
-    plt.plot(data[idx==0,0],data[idx==0,1],'ob', data[idx==1,0],data[idx==1,1],'or')
-
-    plt.plot(centroids[:,0],centroids[:,1],markersize=1, linestyle=":")
+    cent, var = initial[2]
+    assignment,cdist = vq(data,cent)
+    print(cdist)
+    plt.scatter(data[:,0], data[:,1], c=assignment)
+    plt.show()
 
     # plt.plot(data[:][0], data[:][1], linestyle="-")
-    plt.show()
+    #plt.show()
 
     return K_CONST
