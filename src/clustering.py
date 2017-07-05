@@ -8,6 +8,7 @@ import os
 import matplotlib.pyplot as plt
 from matrix import affinity_matrix, laplacian_matrix
 from matrix import eigen_vectors, renormalize_matrix
+from matrix import apply_k_means
 
 data_file = "data/flag.csv"
 formatted_data_file = "data/formatted.csv"
@@ -72,13 +73,13 @@ def main():
     Y = renormalize_matrix(X)
 
     # passo 5
-    # apply_k_means(Y)
+    Z = apply_k_means(Y)
 
     # passo 6
     # atribuir pontos originais (?)
 
     if (not_silent):
-        result = Y # substitua pela matriz que deseja imprimir na tela
+        result = Z # substitua pela matriz que deseja imprimir na tela
         print (result)
 
     plt.imshow(A, cmap='hot', interpolation='nearest', aspect='auto')

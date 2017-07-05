@@ -5,9 +5,13 @@ import sys
 import scipy
 import scipy.linalg
 import matplotlib.pyplot as plt
+#from sklearn.cluster import KMeans
+#import numpy as np
+from scipy.cluster.vq import kmeans, whiten
 
 SIGMA = 20.0
 N_INSTANCES = 194
+K_CONST = 8
 
 final_file = "data/formatted.csv"
 
@@ -27,7 +31,7 @@ def euclidean_ditance(s1, s2):
 
     return math.sqrt(value)
 
-   
+
 def affinity_matrix(pfile):
 
     with open(pfile, 'r') as csvfile:
@@ -91,3 +95,8 @@ def renormalize_matrix(X):
             Y[i, j] = X[i, j]/sum_i
 
     return Y
+
+def apply_k_means(Y):
+    W = whiten(Y)
+    return kmeans(W,K_CONST)
+    #return KMeans(n_clusters=2, random_state=0).fit(Y)
