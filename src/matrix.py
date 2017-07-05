@@ -11,7 +11,7 @@ import pylab
 # Constantes para modificar e obter resultados
 SIGMA = 13.0
 K_CONST = 10   
-ATTRIBUTES_RANGE = range(3,5)
+ATTRIBUTES_RANGE = range(1,2)
 
 final_file = "data/formatted.csv"
 N_INSTANCES = sum(1 for line in open(final_file))
@@ -102,7 +102,7 @@ def renormalize_matrix(X):
     #return KMeans(n_clusters=2, random_state=0).fit(Y)
 
 def apply_k_means(Y, labels):
-    data = Y
+    data = whiten(Y)
     initial = [kmeans(data,i) for i in range(1,K_CONST)]
     #plt.plot([var for (cent,var) in initial])
     #plt.show()
