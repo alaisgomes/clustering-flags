@@ -7,13 +7,18 @@ import scipy.linalg
 import matplotlib.pyplot as plt
 from scipy.cluster.vq import * #kmeans,vq, whiten
 import pylab
+from scipy import linalg
 
 # Constantes para modificar e obter resultados
 SIGMA = 13.0
 K_CONST = 10   
 ATTRIBUTES_RANGE = range(1,2)
 
+<<<<<<< Updated upstream
 final_file = "data/formatted.csv"
+=======
+SIGMA = 200
+>>>>>>> Stashed changes
 N_INSTANCES = sum(1 for line in open(final_file))
 
 
@@ -68,9 +73,11 @@ def laplacian_matrix(A):
 
     np.fill_diagonal(D, A.sum(axis=1))
 
+    sqrD=linalg.sqrtm(D)
+
     for i in range(N_INSTANCES):
         for j in range(N_INSTANCES):
-            L[i, j] = D[i, j] - A[i, j]
+            L = sqrD * A *sqrD
     return L   
 
 def eigen_vectors(L):
