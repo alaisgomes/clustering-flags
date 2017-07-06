@@ -33,15 +33,8 @@ def initialize_matrix(size=N_INSTANCES):
 def euclidean_ditance(s1, s2):
     value = 0.0
 
-<<<<<<< Updated upstream
     for i in ATTRIBUTES_RANGE:
         value += math.pow((int(s1[i]) - int(s2[i])), 2)
-=======
-    #for i in range(4,6):
-     #   value += math.pow((int(s1[i]) - int(s2[i])), 2)
-    value += math.pow((int(s1[3]) - int(s2[3])), 2)
-    value += math.pow((int(s1[4]) - int(s2[4])), 2)
->>>>>>> Stashed changes
 
     return math.sqrt(value)
 
